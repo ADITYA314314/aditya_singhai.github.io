@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <title>Data | Aditya Singhai</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    #map {
+      height: 500px;   /* size of the map */
+      width: 90%;
+      margin: 20px auto;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -14,14 +27,30 @@
 
   <header>
     <h1>Data & Visualizations</h1>
-    <p>This page will host interactive maps and datasets from my projects.</p>
+    <p>This page hosts interactive maps and datasets from my projects.</p>
   </header>
 
   <section>
-    <h2>Sample Dataset</h2>
-    <p>District-level road density (km/km²) aggregated from OSM data.</p>
-    <!-- Later we can embed interactive maps here using Leaflet or Plotly -->
+    <h2>Sample Interactive Map</h2>
+    <div id="map"></div>
   </section>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize map centered on India
+    var map = L.map('map').setView([22.9734, 78.6569], 5);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Example marker (Delhi)
+    L.marker([28.6139, 77.2090])
+      .addTo(map)
+      .bindPopup("<b>Delhi</b><br>Sample marker for demo.")
+      .openPopup();
+  </script>
 </body>
 </html>
-
